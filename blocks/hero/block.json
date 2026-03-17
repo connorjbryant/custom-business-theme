@@ -1,0 +1,16 @@
+{
+  "apiVersion": 2,
+  "name": "tlk-supply/hero",
+  "title": "Hero",
+  "category": "layout",
+  "icon": "universal-access-alt",
+  "textdomain": "tlk-supply",
+  "supports": { "align": ["full", "wide"] },
+
+  "attributes": {
+    "heading": { "type": "string", "default": "" }
+  },
+
+  "editorScript": "theme-hero-editor",
+  "render": "file:./render.php"
+}

@@ -1,0 +1,30 @@
+{
+  "name": "custom-business-theme",
+  "version": "1.0.0",
+  "description": "WordPress theme for TLK Precision",
+  "main": "index.js",
+  "scripts": {
+    "css:build": "sass scss/style.scss build/css/style.min.css --style=compressed && sass scss/editor.scss build/css/editor.min.css --style=compressed",
+    "css:watch": "sass --watch scss:build/css --style=compressed",
+    "js:build": "esbuild src/js/main.js --bundle --minify --sourcemap --outfile=build/js/main.min.js",
+    "js:watch": "esbuild src/js/main.js --bundle --sourcemap --watch --outfile=build/js/main.min.js",
+    "build": "npm run css:build && npm run js:build",
+    "watch": "npm-run-all --parallel css:watch js:watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/connorjbryant/tlk-supply.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/connorjbryant/tlk-supply/issues"
+  },
+  "homepage": "https://github.com/connorjbryant/tlk-supply#readme",
+  "devDependencies": {
+    "esbuild": "^0.25.10",
+    "npm-run-all": "^4.1.5",
+    "sass": "^1.93.2"
+  }
+}
