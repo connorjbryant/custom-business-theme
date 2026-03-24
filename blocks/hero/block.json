@@ -1,10 +1,10 @@
 {
   "apiVersion": 2,
-  "name": "tlk-supply/hero",
+  "name": "custom-business-theme/hero",
   "title": "Hero",
   "category": "layout",
   "icon": "universal-access-alt",
-  "textdomain": "tlk-supply",
+  "textdomain": "custom-business-theme",
   "supports": { "align": ["full", "wide"] },
 
   "attributes": {

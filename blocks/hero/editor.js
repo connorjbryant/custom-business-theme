@@ -3,7 +3,7 @@
   const { __ } = wp.i18n;
   const { useBlockProps, RichText } = wp.blockEditor;
 
-  registerBlockType('tlk-supply/hero', {
+  registerBlockType('custom-business-theme/hero', {
     edit({ attributes = {}, setAttributes }) {
       return wp.element.createElement(
         'section',
@@ -11,7 +11,7 @@
         wp.element.createElement(RichText, {
           tagName: 'h1',
           value: attributes.heading,
-          placeholder: __('Add heading…', 'tlk-supply'),
+          placeholder: __('Add heading…', 'custom-business-theme'),
           onChange: (v) => setAttributes({ heading: v })
         })
       );

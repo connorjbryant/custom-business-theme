@@ -6,7 +6,7 @@ This theme uses **Sass** and modern **JavaScript** compiled into minified assets
 ## Folder Structure
 
 ```text
-tlk-supply/
+custom-business-theme/
 ├── build/
 │   ├── css/
 │   │   ├── style.min.css       # Compiled & minified frontend CSS
