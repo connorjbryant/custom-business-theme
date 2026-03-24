@@ -148,3 +148,28 @@ add_theme_support( 'html5', [
 ] );
 add_theme_support( 'responsive-embeds' );
 add_theme_support( 'align-wide' );
+
+/**
+ * Add no-js to <html> and swap it to js as early as possible.
+ */
+
+// Add class="no-js" to the <html> element.
+add_filter( 'language_attributes', function ( $output ) {
+	if ( strpos( $output, 'class=' ) !== false ) {
+		$output = preg_replace(
+			'/class=(["\'])(.*?)\1/',
+			'class=$1$2 no-js$1',
+			$output,
+			1
+		);
+	} else {
+		$output .= ' class="no-js"';
+	}
+
+	return $output;
+} );
+
+// Replace no-js with js in the head, before the page renders.
+add_action( 'wp_head', function () {
+	echo "<script>(function(){document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');})();</script>\n";
+}, 0 );

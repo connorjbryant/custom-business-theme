@@ -28,3 +28,26 @@
 main {
   flex: 1;
 }
+
+/* Show menu when JS is disabled */
+.no-js .wp-block-navigation__responsive-container {
+  display: block !important;
+  position: static;
+  height: auto;
+  width: 100%;
+  background: none;
+}
+
+/* Hide the toggle button (since it won’t work) */
+.no-js .wp-block-navigation__responsive-container-open {
+  display: none;
+}
+
+/* Make menu items stack nicely */
+.no-js .wp-block-navigation__container {
+  display: block;
+}
+
+.no-js .wp-block-navigation__responsive-container-close {
+  display: none;
+}
