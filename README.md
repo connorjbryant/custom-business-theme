@@ -1,6 +1,6 @@
-# TLK Supply Theme
+# Custom Business Theme
 
-A custom WordPress theme built for TLK Supply.  
+A custom WordPress theme built for a business.  
 This theme uses **Sass** and modern **JavaScript** compiled into minified assets in a `/build` folder for better performance.
 
 ## Folder Structure
