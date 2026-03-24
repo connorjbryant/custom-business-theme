@@ -1,5 +1,5 @@
 .herotitle {
-    color: red;
+  color: red;
 }
 
 /* Mobile menu */
@@ -15,4 +15,16 @@
   margin-left: auto;
   margin-right: auto;
   width: 100%;
+}
+
+/* Min height rule */
+.wp-site-blocks {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main tag flex to grow full viewport height */
+main {
+  flex: 1;
 }
