@@ -7,7 +7,7 @@
     <link rel="profile" href="http://gmpg.org/xfn/11">
     <?php wp_head(); ?>
 </head>
-<body <?php echo body_class(); ?>>
+<body <?php body_class(); ?>>
   <div class="site-container" id="top">
     <header>
       <?php if ( defined('SUPPORT_CUSTOM_HEADER') && SUPPORT_CUSTOM_HEADER && has_header_image() ) : ?>

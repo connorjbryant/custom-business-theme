@@ -96,7 +96,7 @@ add_action('after_setup_theme', function () {
     }
 
     register_nav_menus([
-        'primary' => __('Primary Menu', 'theme'),
+        'primary' => __('Primary Menu', 'custom-business-theme'),
     ]);
 });
 
@@ -135,3 +135,16 @@ add_action('init', function () {
 
     register_block_type_from_metadata( $block_dir_fs );
 });
+
+add_theme_support( 'automatic-feed-links' );
+add_theme_support( 'html5', [
+	'search-form',
+	'comment-form',
+	'comment-list',
+	'gallery',
+	'caption',
+	'style',
+	'script',
+] );
+add_theme_support( 'responsive-embeds' );
+add_theme_support( 'align-wide' );
