@@ -1,9 +1,7 @@
 {
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
   "version": 3,
   "settings": {
-    "supports": {
-      "anchor": true
-    },
     "border": {
       "radius": true,
       "color": true,
@@ -71,9 +69,18 @@
       "spacing": {
         "baseline": "2rem"
       }
-    }
+    },
+    "useRootPaddingAwareAlignments": true
   },
   "styles": {
+    "spacing": {
+      "padding": {
+        "top": "0",
+        "right": "24px",
+        "bottom": "0",
+        "left": "24px"
+      }
+    },
     "color": {
       "text": "var(--wp--preset--color--contrast)"
     },
@@ -90,7 +97,33 @@
       "h6": { "typography": { "fontSize": "var(--wp--preset--font-size--level-1)", "lineHeight": "1.25" } }
     }
   },
-  
-  "customTemplates": {},
-  "templateParts": {}
+  "customTemplates": [
+    {
+      "name": "blank-landing",
+      "title": "Blank Landing Page",
+      "postTypes": ["page"]
+    },
+    {
+      "name": "full-width-page",
+      "title": "Full Width Page",
+      "postTypes": ["page"]
+    }
+  ],
+  "templateParts": [
+    {
+      "name": "header",
+      "title": "Header",
+      "area": "header"
+    },
+    {
+      "name": "footer",
+      "title": "Footer",
+      "area": "footer"
+    },
+    {
+      "name": "page-hero",
+      "title": "Page Hero",
+      "area": "uncategorized"
+    }
+  ]
 }

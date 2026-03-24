@@ -1,3 +1,18 @@
 .herotitle {
     color: red;
 }
+
+/* Mobile menu */
+/* Full overlay can stay full screen */
+.wp-block-navigation__responsive-container.is-menu-open {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* Constrain the inner menu content */
+.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content {
+  max-width: 1040px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
