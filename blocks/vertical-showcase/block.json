@@ -1,0 +1,21 @@
+{
+  "apiVersion": 2,
+  "name": "custom-business-theme/vertical-showcase",
+  "title": "Vertical Showcase",
+  "category": "layout",
+  "icon": "slides",
+  "textdomain": "custom-business-theme",
+  "supports": {
+    "align": ["full", "wide"]
+  },
+  "attributes": {
+    "kicker": {
+      "type": "string",
+      "default": "Vertical Showcase Slider"
+    }
+  },
+  "editorScript": "theme-vertical-showcase-editor",
+  "script": "theme-vertical-showcase-script",
+  "style": "theme-vertical-showcase-style",
+  "render": "file:./render.php"
+}

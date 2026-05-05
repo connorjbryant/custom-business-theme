@@ -136,6 +136,65 @@ add_action('init', function () {
     register_block_type_from_metadata( $block_dir_fs );
 });
 
+/* ---------------------------------
+ * Block: custom-business-theme/vertical-showcase
+ * - Renders a vertical slider
+ * --------------------------------- */
+add_action('init', function () {
+    $block_dir_fs  = trailingslashit(get_stylesheet_directory()) . 'blocks/vertical-showcase';
+    $block_json_fs = $block_dir_fs . '/block.json';
+
+    if (!file_exists($block_json_fs)) {
+        if (defined('WP_DEBUG') && WP_DEBUG) {
+            error_log('[blocks] vertical-showcase block.json not found at ' . $block_json_fs);
+        }
+        return;
+    }
+
+    $editor_fs = $block_dir_fs . '/editor.js';
+
+    if (file_exists($editor_fs)) {
+        wp_register_script(
+            'theme-vertical-showcase-editor',
+            trailingslashit(get_stylesheet_directory_uri()) . 'blocks/vertical-showcase/editor.js',
+            ['wp-blocks', 'wp-element', 'wp-i18n', 'wp-block-editor', 'wp-editor'],
+            theme_file_ver($editor_fs),
+            true
+        );
+    }
+
+    $script_fs = $block_dir_fs . '/script.js';
+
+    if (file_exists($script_fs)) {
+        wp_register_script(
+            'theme-vertical-showcase-script',
+            trailingslashit(get_stylesheet_directory_uri()) . 'blocks/vertical-showcase/script.js',
+            ['jquery'],
+            theme_file_ver($script_fs),
+            true
+        );
+    }
+
+    $style_fs = $block_dir_fs . '/style.css';
+
+    if (file_exists($style_fs)) {
+        wp_register_style(
+            'theme-vertical-showcase-style',
+            trailingslashit(get_stylesheet_directory_uri()) . 'blocks/vertical-showcase/style.css',
+            [],
+            theme_file_ver($style_fs)
+        );
+    }
+
+    $registry = WP_Block_Type_Registry::get_instance();
+
+    if ($registry->is_registered('custom-business-theme/vertical-showcase')) {
+        return;
+    }
+
+    register_block_type_from_metadata($block_dir_fs);
+});
+
 add_theme_support( 'automatic-feed-links' );
 add_theme_support( 'html5', [
 	'search-form',
@@ -173,3 +232,17 @@ add_filter( 'language_attributes', function ( $output ) {
 add_action( 'wp_head', function () {
 	echo "<script>(function(){document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');})();</script>\n";
 }, 0 );
+
+/* Vertical showcase CPT for vertical slider block */
+register_post_type('showcase_slide', [
+    'labels' => [
+        'name' => 'Showcase Slides',
+        'singular_name' => 'Showcase Slide',
+    ],
+    'public' => false,
+    'show_ui' => true,
+    'show_in_menu' => true,
+    'menu_icon' => 'dashicons-slides',
+    'supports' => ['title', 'editor', 'excerpt', 'thumbnail', 'page-attributes'],
+    'show_in_rest' => true,
+]);
