@@ -24,7 +24,7 @@
 
 .cb-vshowcase__kicker {
     margin: 0 0 20px;
-    font-size: 0.875rem;
+    font-size: var(--wp--preset--font-size--level-0);
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--wp--preset--color--primary);
@@ -59,7 +59,11 @@
     margin: 0 0 28px;
     padding-bottom: 20px;
     border-bottom: 2px solid var(--wp--preset--color--secondary);
-    font-size: clamp(2.75rem, 5vw, 4.5rem);
+    font-size: clamp(
+        var(--wp--preset--font-size--level-5),
+        5vw,
+        var(--wp--preset--font-size--level-6)
+    );
     font-weight: 700;
     line-height: 1.05;
     text-align: right;
@@ -75,39 +79,12 @@
     align-items: start;
 }
 
-.cb-vshowcase__price {
-    min-height: 150px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background: var(--wp--preset--color--tertiary);
-    color: var(--wp--preset--color--base);
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
-    font-weight: 700;
-    border-radius: 14px;
-    transition: transform 0.3s ease;
-    padding: 20px 16px;
-    text-align: center;
-}
-
-.cb-vshowcase__price:hover {
-    transform: scale(1.02);
-}
-
-.cb-vshowcase__price small {
-    font-size: 0.875rem;
-    font-weight: 500;
-    opacity: 0.9;
-}
-
 .cb-vshowcase__copy p {
     margin: 0 0 22px;
-    font-size: 1.125rem;
+    font-size: var(--wp--preset--font-size--level-2);
     line-height: 1.65;
     letter-spacing: 0;
-    color: #4a4f57;
+    color: var(--wp--preset--color--gray);
 }
 
 .cb-vshowcase__copy a {
@@ -121,7 +98,7 @@
     border: 2px solid var(--wp--preset--color--primary);
     color: var(--wp--preset--color--base);
     text-decoration: none;
-    font-size: 0.875rem;
+    font-size: var(--wp--preset--font-size--level-0);
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -195,7 +172,7 @@
 .cb-vshowcase__thumb {
     appearance: none;
     border: 0;
-    background: #232338;
+    background: var(--wp--preset--color--secondary);
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
@@ -218,7 +195,6 @@
 }
 
 .cb-vshowcase__thumb.is-active {
-    /* background: var(--wp--preset--color--primary); */
     box-shadow: inset 0 4px 0 var(--wp--preset--color--base);
 }
 
@@ -331,7 +307,11 @@
 
     .cb-vshowcase__content h2 {
         text-align: left;
-        font-size: clamp(2.25rem, 11vw, 3.25rem);
+        font-size: clamp(
+            var(--wp--preset--font-size--level-4),
+            11vw,
+            var(--wp--preset--font-size--level-5)
+        );
         margin: 0 0 24px;
         padding-bottom: 16px;
     }
@@ -341,20 +321,8 @@
         gap: 22px;
     }
 
-    .cb-vshowcase__price {
-        width: 100%;
-        max-width: 220px;
-        min-height: 100px;
-        flex-direction: row;
-        justify-content: center;
-        gap: 12px;
-        margin: 0 auto;
-        font-size: 1.75rem;
-        padding: 16px 20px;
-    }
-
     .cb-vshowcase__copy p {
-        font-size: 1.0625rem;
+        font-size: var(--wp--preset--font-size--level-2);
         line-height: 1.65;
     }
 
@@ -407,21 +375,20 @@
     }
 
     .cb-vshowcase__kicker {
-        font-size: 0.8125rem;
+        font-size: var(--wp--preset--font-size--level-0);
         letter-spacing: 0.16em;
     }
 
     .cb-vshowcase__content h2 {
-        font-size: clamp(2rem, 12vw, 2.75rem);
-    }
-
-    .cb-vshowcase__price {
-        font-size: 1.625rem;
-        max-width: 200px;
+        font-size: clamp(
+            var(--wp--preset--font-size--level-4),
+            12vw,
+            var(--wp--preset--font-size--level-5)
+        );
     }
 
     .cb-vshowcase__copy p {
-        font-size: 1rem;
+        font-size: var(--wp--preset--font-size--level-1);
     }
 
     .cb-vshowcase__right {
