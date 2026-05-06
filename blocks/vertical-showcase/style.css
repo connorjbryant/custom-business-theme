@@ -273,6 +273,7 @@
 
 /* MOBILE */
 @media (max-width: 768px) {
+
     .cb-vshowcase {
         grid-template-columns: 1fr;
         min-height: auto;
@@ -281,15 +282,16 @@
 
     .cb-vshowcase__left {
         min-height: auto;
-        padding: 34px 24px;
+        padding: 28px 24px;
         border-right: none;
         border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     }
 
+    /* REMOVE HUGE EMPTY SPACE */
     .cb-vshowcase__content-track {
         position: relative;
         height: auto;
-        min-height: 480px;
+        min-height: unset;
     }
 
     .cb-vshowcase__content {
@@ -307,61 +309,33 @@
 
     .cb-vshowcase__content h2 {
         text-align: left;
-        font-size: clamp(
-            var(--wp--preset--font-size--level-4),
-            11vw,
-            var(--wp--preset--font-size--level-5)
-        );
-        margin: 0 0 24px;
-        padding-bottom: 16px;
+        margin-bottom: 18px;
     }
 
     .cb-vshowcase__details {
         grid-template-columns: 1fr;
-        gap: 22px;
+        gap: 18px;
     }
 
-    .cb-vshowcase__copy p {
-        font-size: var(--wp--preset--font-size--level-2);
-        line-height: 1.65;
-    }
-
-    .cb-vshowcase__copy a {
-        float: none;
-        width: 100%;
-        white-space: normal;
-        padding: 13px 20px;
-    }
-
+    /* MAKE IMAGE SECTION TALLER */
     .cb-vshowcase__right {
-        min-height: 500px;
+        min-height: 720px;
     }
 
     .cb-vshowcase__image-track {
-        height: 65%;
+        height: 78%;
     }
 
     .cb-vshowcase__image {
-        padding: 24px;
+        padding: 0;
     }
 
     .cb-vshowcase__thumbs {
-        height: 35%;
+        height: 22%;
     }
 
     .cb-vshowcase__nav {
         right: 16px;
-        gap: 8px;
-    }
-
-    .cb-vshowcase__nav button {
-        width: 40px;
-        height: 40px;
-    }
-
-    .cb-vshowcase__nav button span {
-        width: 8px;
-        height: 8px;
     }
 }
 
@@ -370,8 +344,11 @@
         padding: 28px 20px;
     }
 
+    /* REMOVE HUGE EMPTY SPACE */
     .cb-vshowcase__content-track {
-        min-height: 440px;
+        position: relative;
+        height: auto;
+        min-height: unset;
     }
 
     .cb-vshowcase__kicker {
