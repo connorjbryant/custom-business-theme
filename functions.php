@@ -137,6 +137,42 @@ add_action('init', function () {
 });
 
 /* ---------------------------------
+ * Block: custom-business-theme/holy-grail-layout
+ * - Register editor script handle (deps ensure wp.* exists)
+ * - Register block from block.json ONCE (idempotent)
+ * --------------------------------- */
+add_action('init', function () {
+    $block_dir_fs  = trailingslashit( get_stylesheet_directory() ) . 'blocks/holy-grail-layout';
+    $block_json_fs = $block_dir_fs . '/block.json';
+    if ( ! file_exists( $block_json_fs ) ) {
+        if ( defined('WP_DEBUG') && WP_DEBUG ) {
+            error_log('[blocks] block.json not found at ' . $block_json_fs);
+        }
+        return;
+    }
+
+    // Register the editor script handle referenced by block.json ("editorScript": "theme-holy-grail-editor")
+    $editor_fs = $block_dir_fs . '/editor.js';
+    if ( file_exists( $editor_fs ) ) {
+        wp_register_script(
+            'theme-holy-grail-editor',
+            trailingslashit( get_stylesheet_directory_uri() ) . 'blocks/holy-grail-layout/editor.js',
+            [ 'wp-blocks', 'wp-element', 'wp-i18n', 'wp-block-editor', 'wp-editor' ],
+            theme_file_ver( $editor_fs ),
+            true
+        );
+    }
+
+    // Avoid duplicate registration if parent theme/plugin already did it
+    $registry = WP_Block_Type_Registry::get_instance();
+    if ( $registry->is_registered( 'custom-business-theme/holy-grail-layout' ) ) {
+        return;
+    }
+
+    register_block_type_from_metadata( $block_dir_fs );
+});
+
+/* ---------------------------------
  * Block: custom-business-theme/vertical-showcase
  * - Renders a vertical slider
  * --------------------------------- */

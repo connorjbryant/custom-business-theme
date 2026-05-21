@@ -1,0 +1,14 @@
+{
+  "apiVersion": 2,
+  "name": "custom-business-theme/holy-grail-layout",
+  "title": "Holy Grail Layout",
+  "category": "layout",
+  "icon": "universal-access-alt",
+  "textdomain": "custom-business-theme",
+  "supports": { "align": ["full", "wide"] },
+  "attributes": {
+    "heading": { "type": "string", "default": "" }
+  },
+  "editorScript": "theme-holy-grail-editor",
+  "render": "file:./render.php"
+}
