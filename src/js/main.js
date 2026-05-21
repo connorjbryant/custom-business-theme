@@ -1,6 +1,7 @@
 jQuery(document).ready(function ($) {
   console.log('setup working');
 
+  /* Animation Reveal */
   const $reveals = $('.reveal');
 
   if (!$reveals.length) {
