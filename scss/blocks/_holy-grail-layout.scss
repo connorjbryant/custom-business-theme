@@ -4,11 +4,14 @@
   gap: 2rem;
   max-width: var(--wp--style--global--wide-size);
   margin: 0 auto;
+  overflow-x: hidden;
 }
 
 .hgrailaside {
   background-color: var(--wp--preset--color--offwhite);
   padding: 2rem;
+  box-sizing: border-box;
+  min-width: 0;
 }
 
 .hgrailmain {
@@ -32,6 +35,8 @@
 
 .hgrailcontent {
   max-width: var(--wp--style--global--content-size);
+  box-sizing: border-box;
+  min-width: 0;
 }
 
 @media (max-width: 768px) {

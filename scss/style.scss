@@ -190,28 +190,32 @@ p {
 
 /* Animation */
 .reveal {
+  overflow: hidden; /* prevents any bleed during slide-in */
+  will-change: opacity, transform;
+}
+
+.reveal__inner {
   opacity: 0;
-  transition:
+  transition: 
     opacity 0.7s ease,
     transform 0.7s ease;
-  will-change: opacity, transform;
 
-  &.is-visible {
+  /* Initial states */
+  .reveal-left & {
+    transform: translateX(-40px);
+  }
+  .reveal-right & {
+    transform: translateX(40px);
+  }
+  .reveal-up & {
+    transform: translateY(24px);
+  }
+
+  /* Visible state */
+  .is-visible & {
     opacity: 1;
     transform: none;
   }
-}
-
-.reveal-left {
-  transform: translateX(-40px);
-}
-
-.reveal-right {
-  transform: translateX(40px);
-}
-
-.reveal-up {
-  transform: translateY(24px);
 }
 
 /* -------------------------------- */
