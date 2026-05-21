@@ -188,6 +188,32 @@ p {
   }
 }
 
+/* Animation */
+.reveal {
+  opacity: 0;
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+  will-change: opacity, transform;
+
+  &.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.reveal-left {
+  transform: translateX(-40px);
+}
+
+.reveal-right {
+  transform: translateX(40px);
+}
+
+.reveal-up {
+  transform: translateY(24px);
+}
+
 /* -------------------------------- */
 /* No JS Navigation */
 /* -------------------------------- */

@@ -11,7 +11,7 @@ $nav_url  = ! empty($attributes['navUrl']) ? trim((string) $attributes['navUrl']
 
 <section class="hgrailblock alignfull">
 
-  <aside class="hgrailaside">
+  <aside class="hgrailaside reveal reveal-left">
     <?php if ( $sidebar_heading !== '' ) : ?>
       <h2><?php echo esc_html( $sidebar_heading ); ?></h2>
     <?php endif; ?>
@@ -23,14 +23,14 @@ $nav_url  = ! empty($attributes['navUrl']) ? trim((string) $attributes['navUrl']
 
   <main class="hgrailmain">
     <?php if ( $nav_text !== '' && $nav_url !== '' ) : ?>
-      <nav class="hgrailnav">
+      <nav class="hgrailnav reveal reveal-up">
         <a href="<?php echo esc_url( $nav_url ); ?>">
           <?php echo esc_html( $nav_text ); ?>
         </a>
       </nav>
     <?php endif; ?>
 
-    <article class="hgrailcontent">
+    <article class="hgrailcontent reveal reveal-right">
       <?php if ( $main_heading !== '' ) : ?>
         <h1><?php echo esc_html( $main_heading ); ?></h1>
       <?php endif; ?>
