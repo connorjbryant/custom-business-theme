@@ -5,9 +5,34 @@
   "category": "layout",
   "icon": "universal-access-alt",
   "textdomain": "custom-business-theme",
-  "supports": { "align": ["full", "wide"] },
+  "supports": {
+    "align": ["full", "wide"]
+  },
   "attributes": {
-    "heading": { "type": "string", "default": "" }
+    "sidebarHeading": {
+      "type": "string",
+      "default": ""
+    },
+    "sidebarContent": {
+      "type": "string",
+      "default": ""
+    },
+    "mainHeading": {
+      "type": "string",
+      "default": ""
+    },
+    "mainContent": {
+      "type": "string",
+      "default": ""
+    },
+    "navText": {
+      "type": "string",
+      "default": ""
+    },
+    "navUrl": {
+      "type": "string",
+      "default": ""
+    }
   },
   "editorScript": "theme-holy-grail-editor",
   "render": "file:./render.php"
