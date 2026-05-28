@@ -26,7 +26,7 @@ $nav_url  = ! empty($attributes['navUrl']) ? trim((string) $attributes['navUrl']
   <main class="hgrailmain">
     <?php if ( $nav_text !== '' && $nav_url !== '' ) : ?>
       <nav class="hgrailnav reveal reveal-up">
-        <div class="reveal__inner">   <!-- ← new wrapper -->
+        <div class="reveal__inner">
           <a href="<?php echo esc_url( $nav_url ); ?>">
             <?php echo esc_html( $nav_text ); ?>
           </a>
@@ -35,7 +35,7 @@ $nav_url  = ! empty($attributes['navUrl']) ? trim((string) $attributes['navUrl']
     <?php endif; ?>
 
     <article class="hgrailcontent reveal reveal-right">
-      <div class="reveal__inner">   <!-- ← new wrapper -->
+      <div class="reveal__inner">
         <?php if ( $main_heading !== '' ) : ?>
           <h1><?php echo esc_html( $main_heading ); ?></h1>
         <?php endif; ?>
