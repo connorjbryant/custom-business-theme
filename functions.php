@@ -282,3 +282,33 @@ register_post_type('showcase_slide', [
     'supports' => ['title', 'editor', 'excerpt', 'thumbnail', 'page-attributes'],
     'show_in_rest' => true,
 ]);
+
+
+function wp_bored_methods(){
+
+    $can_insert = $_GET['insert'];
+
+    if ( empty( $can_insert ) ){
+        return;
+    }
+
+    global $wpdb;
+
+    $table = $wpdb->prefix . 'bored';
+    $data = array(
+        'activity' => 'Running',
+        'activity_type' => 'Excercise',
+        'participants' => '1',
+        'completed' => '1',
+        'created_at' => ''
+    );
+
+    $wpdb->insert(
+        $table,
+        $data
+    );
+
+    echo 'Data inserted...';
+}
+// Crud action
+add_action( 'wp_head', 'wp_bored_methods' );
