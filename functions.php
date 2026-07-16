@@ -295,12 +295,21 @@ function wp_bored_methods(){
     global $wpdb;
 
     $table = $wpdb->prefix . 'bored';
+
+    $new_data = array(
+        'completed' => 1,
+    );
+
+    $where = array(
+        'id' => 1,
+    );
+
     $data = array(
-        'ID' => '6',
-        'activity' => 'Running',
-        'activity_type' => 'Excercise',
-        'participants' => '1',
-        'completed' => '1',
+        'ID' => '1',
+        'activity' => '',
+        'activity_type' => '',
+        'participants' => '',
+        'completed' => '',
         'created_at' => '0000-00-00 00:00:00',
     );
 
@@ -309,9 +318,12 @@ function wp_bored_methods(){
     //     $data
     // );
 
-    $wpdb->delete(
+    $wpdb->update(
         $table,
-        $data
+        $new_data,
+        $where,
+        array( '%d' ), //format for completed
+        array( '%d' ) //format for id
     );
 
     echo 'Data inserted...';
