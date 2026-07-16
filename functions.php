@@ -296,14 +296,20 @@ function wp_bored_methods(){
 
     $table = $wpdb->prefix . 'bored';
     $data = array(
+        'ID' => '6',
         'activity' => 'Running',
         'activity_type' => 'Excercise',
         'participants' => '1',
         'completed' => '1',
-        'created_at' => ''
+        'created_at' => '0000-00-00 00:00:00',
     );
 
-    $wpdb->insert(
+    // $wpdb->insert(
+    //     $table,
+    //     $data
+    // );
+
+    $wpdb->delete(
         $table,
         $data
     );
