@@ -331,8 +331,19 @@ function wp_bored_methods(){
 // Crud action
 add_action( 'wp_head', 'wp_bored_methods' );
 
-// Testing API requests
-$url = "https://bored-api.appbrewery.com/random";
+//Testing API requests
+// $url = "https://bored-api.appbrewery.com/random";
+// $response = wp_remote_get( $url );
+
+// if ( is_wp_error( $response )){
+//     print_r("error");
+// } else {
+//     $body = wp_remote_retrieve_body( $response );
+//     print_r($body);
+// }
+
+$key = $_GET['key'];
+$url = "https://apis.scrimba.com/bored/api/activity" . urlencode($key);
 $response = wp_remote_get( $url );
 
 if ( is_wp_error( $response )){
@@ -341,3 +352,25 @@ if ( is_wp_error( $response )){
     $body = wp_remote_retrieve_body( $response );
     print_r($body);
 }
+
+// function fetch_bored_activity(){
+//     $key = $_GET['key'] ?? '';
+//     $api_url = "https://bored-api.appbrewery.com/activity/" . urlencode($key);
+
+//     $response = wp_remote_get( $api_url );
+
+//     if ( is_wp_error ($response) ) {
+//         return "Cannot connect";
+//     }
+
+//     $body = wp_remote_retrieve_body($response);
+
+//     $data = json_decode($body);
+
+//     if ( ! empty($data->activity)){
+//         print_r($data->activity);
+//     }
+
+//     print_r("womp womp");
+// }
+// add_action('wp_head', 'fetch_bored_activity');
