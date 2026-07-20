@@ -330,3 +330,14 @@ function wp_bored_methods(){
 }
 // Crud action
 add_action( 'wp_head', 'wp_bored_methods' );
+
+// Testing API requests
+$url = "https://bored-api.appbrewery.com/random";
+$response = wp_remote_get( $url );
+
+if ( is_wp_error( $response )){
+    print_r("error");
+} else {
+    $body = wp_remote_retrieve_body( $response );
+    print_r($body);
+}
