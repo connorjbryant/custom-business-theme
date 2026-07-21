@@ -286,6 +286,29 @@ register_post_type('showcase_slide', [
 
 function wp_bored_methods(){
 
+    $key = $_GET['key'];
+    $url = "https://apis.scrimba.com/bored/api/activity" . urlencode($key);
+    $response = wp_remote_get( $url );
+    $body = wp_remote_retrieve_body( $response );
+    $data = json_decode($body, true);
+    $keys = array_keys($data);
+    $secondKey = $keys[1] ?? null;
+    $thirdKey = $keys[2] ?? null;
+
+    if (is_array($data) && ! empty($data)){
+        $first_key = array_key_first($data);
+        $first_value = $data[$first_key];
+    }
+
+    $second_value = $data[$secondKey];
+    $third_value = $data[$thirdKey];
+
+    if ( is_wp_error( $response )){
+        print_r("error");
+    } else {
+        print_r($body);
+    }
+
     $can_insert = $_GET['insert'];
 
     if ( empty( $can_insert ) ){
@@ -305,26 +328,26 @@ function wp_bored_methods(){
     );
 
     $data = array(
-        'ID' => '1',
-        'activity' => '',
-        'activity_type' => '',
-        'participants' => '',
+        'ID' => '',
+        'activity' => $first_value,
+        'activity_type' => $second_value,
+        'participants' => $third_value,
         'completed' => '',
         'created_at' => '0000-00-00 00:00:00',
     );
 
-    // $wpdb->insert(
-    //     $table,
-    //     $data
-    // );
-
-    $wpdb->update(
+    $wpdb->insert(
         $table,
-        $new_data,
-        $where,
-        array( '%d' ), //format for completed
-        array( '%d' ) //format for id
+        $data
     );
+
+    // $wpdb->update(
+    //     $table,
+    //     $new_data,
+    //     $where,
+    //     array( '%d' ), //format for completed
+    //     array( '%d' ) //format for id
+    // );
 
     echo 'Data inserted...';
 }
@@ -341,17 +364,6 @@ add_action( 'wp_head', 'wp_bored_methods' );
 //     $body = wp_remote_retrieve_body( $response );
 //     print_r($body);
 // }
-
-$key = $_GET['key'];
-$url = "https://apis.scrimba.com/bored/api/activity" . urlencode($key);
-$response = wp_remote_get( $url );
-
-if ( is_wp_error( $response )){
-    print_r("error");
-} else {
-    $body = wp_remote_retrieve_body( $response );
-    print_r($body);
-}
 
 // function fetch_bored_activity(){
 //     $key = $_GET['key'] ?? '';
