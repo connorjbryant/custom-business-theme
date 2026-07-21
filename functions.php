@@ -358,6 +358,12 @@ function wp_bored_methods(){
 // Crud action
 add_action( 'wp_head', 'wp_bored_methods' );
 
+add_action('init', function(){
+    if (!session_id()){
+        session_start();
+    }
+});
+
 /* Add a button */
 function add_button( $content ) {
     if ( ! is_page() ) {
@@ -418,6 +424,20 @@ function add_button( $content ) {
             </article>
         ';
     }
+
+    if ( ! empty( $activities ) ) {
+        $_SESSION['last_activity'] = $activities[0]->activity;
+
+        $content .= '<p>Last activity: '
+            . esc_html( $_SESSION['last_activity'] )
+            . '</p>';
+    }
+
+    $ip_address = $_SERVER['REMOTE_ADDR'] ?? 'Unknown';
+
+    $content .= '<p>IP address: '
+        . esc_html( $ip_address )
+        . '</p>';
 
     // Close the single activity-result container.
     $content .= '</div>';
