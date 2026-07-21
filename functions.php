@@ -78,6 +78,10 @@ add_action('wp_enqueue_scripts', function () {
             );
         }
     }
+
+    wp_localize_script('theme-main', 'wp_ajax_object', array(
+        'ajax_url' => admin_url('admin-ajax.php')
+    ));
 });
 
 /* ---------------------------------
@@ -353,6 +357,109 @@ function wp_bored_methods(){
 }
 // Crud action
 add_action( 'wp_head', 'wp_bored_methods' );
+
+/* Add a button */
+function add_button ($content){
+    if (is_page()){
+        $content .= '
+            <input id="new-activity" type="button" value="New Activity" />
+            
+            <div id="activity-result"></div>
+        ';
+    }
+
+    return $content;
+}
+add_filter('the_content', 'add_button');
+
+function get_bored_activity_ajax(){
+    $api_url = 'https://apis.scrimba.com/bored/api/activity';
+
+    $response = wp_remote_get( $api_url );
+
+    if ( is_wp_error ($response)){
+        wp_send_json_error([
+            'message' => 'Could not connect to server',
+        ]);
+    }
+
+    $body = wp_remote_retrieve_body($response);
+    $activity = json_decode($body, true);
+
+    if(empty($activity['activity'])){
+        wp_send_json_error([
+            'message' => 'No activity returned',
+        ]);
+    }
+
+    global $wpdb;
+
+    $wpdb->insert(
+        $wpdb->prefix . 'bored',
+        [
+            'activity' => $activity['activity'],
+            'activity_type' => $activity['type'],
+            'participants' => $activity['participants'],
+            'completed' => 0,
+            'created_at' => current_time('mysql'),
+        ],
+        [
+            '%s',
+            '%s',
+            '%d',
+            '%d',
+            '%s',
+        ]
+    );
+
+    $activity_id = $wpdb->insert_id;
+
+    wp_send_json_success([
+        'id'        => $activity_id,
+        'activity'  => $activity['activity'],
+        'type'      => $activity['type'],
+        'participants' => $activity['participants'],
+        'price'         => $activity['price'],
+        'completed'     => 0,
+    ]);
+}
+add_action('wp_ajax_get_bored_activity', 'get_bored_activity_ajax');
+add_action('wp_ajax_nopriv_get_bored_activity', 'get_bored_activity_ajax');
+
+function complete_activity(){
+    global $wpdb;
+
+    $wpdb->update(
+        $wpdb->prefix . 'bored',
+        [
+            'completed' => 1
+        ],
+        [
+            'ID' => $_POST['id']
+        ]
+    );
+
+    wp_die();
+}
+add_action('wp_ajax_complete_activity', 'complete_activity');
+add_action('wp_ajax_nopriv_complete_activity', 'complete_activity');
+
+function delete_activity(){
+    global $wpdb;
+
+    $wpdb->delete(
+        $wpdb->prefix . 'bored',
+        [
+            'ID' => $_POST['id']
+        ],
+        [
+            '%d'
+        ]
+    );
+    wp_die();
+}
+add_action('wp_ajax_delete_activity', 'delete_activity');
+add_action('wp_ajax_nopriv_delete_activity', 'delete_activity');
 
 //Testing API requests
 // $url = "https://bored-api.appbrewery.com/random";
