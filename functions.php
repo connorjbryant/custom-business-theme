@@ -359,18 +359,72 @@ function wp_bored_methods(){
 add_action( 'wp_head', 'wp_bored_methods' );
 
 /* Add a button */
-function add_button ($content){
-    if (is_page()){
+function add_button( $content ) {
+    if ( ! is_page() ) {
+        return $content;
+    }
+
+    global $wpdb;
+
+    $activities = $wpdb->get_results(
+        "SELECT * FROM {$wpdb->prefix}bored ORDER BY ID DESC"
+    );
+
+    // Output this only once.
+    $content .= '
+        <input
+            id="new-activity"
+            type="button"
+            value="New Activity"
+        />
+
+        <div id="activity-result">
+    ';
+
+    // Only the activity cards belong inside the loop.
+    foreach ( $activities as $activity ) {
+        $completed = (int) $activity->completed === 1;
+
         $content .= '
-            <input id="new-activity" type="button" value="New Activity" />
-            
-            <div id="activity-result"></div>
+            <article class="bored-activity">
+                <h2>' . esc_html( $activity->activity ) . '</h2>
+
+                <p>
+                    Type:
+                    ' . esc_html( $activity->activity_type ) . '
+                </p>
+
+                <p class="activity-status">
+                    Completed:
+                    ' . ( $completed ? 'Yes' : 'No' ) . '
+                </p>
+
+                <button
+                    type="button"
+                    class="complete-btn"
+                    data-id="' . esc_attr( $activity->ID ) . '"
+                    ' . ( $completed ? 'disabled' : '' ) . '
+                >
+                    ' . ( $completed ? 'Completed' : 'Complete' ) . '
+                </button>
+
+                <button
+                    type="button"
+                    class="delete-btn"
+                    data-id="' . esc_attr( $activity->ID ) . '"
+                >
+                    Delete
+                </button>
+            </article>
         ';
     }
 
+    // Close the single activity-result container.
+    $content .= '</div>';
+
     return $content;
 }
-add_filter('the_content', 'add_button');
+add_filter( 'the_content', 'add_button' );
 
 function get_bored_activity_ajax(){
     $api_url = 'https://apis.scrimba.com/bored/api/activity';

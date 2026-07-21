@@ -28,7 +28,12 @@ jQuery(document).ready(function ($) {
     const $result = $("#activity-result");
 
     $button.prop("disabled", true);
-    $result.html("<p>Finding an activity...</p>");
+    const $loading = $("<p>", {
+      class: "activity-loading",
+      text: "Finding an activity..."
+    });
+
+    $result.prepend($loading);
 
     $.ajax({
       url: wp_ajax_object.ajax_url,
@@ -72,15 +77,16 @@ jQuery(document).ready(function ($) {
           .addClass("delete-btn")
           .appendTo($markup);
 
-        $result.empty().append($markup);
+        $result.append($markup);
       },
       error: function(){
         $result.html(
           "<p>Error</p>"
-        );
+        )
       },
       complete: function(){
         $button.prop("disabled", false);
+        $loading.remove();
       }
     });
   });
